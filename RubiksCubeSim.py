@@ -254,53 +254,11 @@ class RubiksCube(object):
             #bottom
             print_side_indent('y')
 
-        else:
+        elif len(side) == 1 and side in 'wogrby':
             #print side and the 3 squares that are on top, bottom, left, right
-            pass
-
-#-------------------------
-## Solver - In progress... 
-def successor_function(compressedCube):
-    '''returns a list of possible cube states (as compressed strings)
-    reachable in 1-3 spins from compressedCube
-    a spin is a 90, 180 or 270 degree turn of a side
-    cube: compressed string
-    '''
-    rubik = RubiksCube(compressedCube)
-    posCubes = []
-    for i in 'wogrby':
-        for j in range(3):
-            rubik.spin(i)
-            posCubes.append(rubik.compress())
-        rubik.reset()
-    return posCubes  
-               
-def heuristic(cube):
-    """returns a number, higher the closer to solution"""
-    #possibilities:
-    #number correct colors on each side
-    
-    #number of colors on each side (lower is better)
-    
-    #number of squares out of place
-    #not really a good one... after 4 spins it gives 17 out of 56...
-    count = 0
-    for i in cube:
-        if cube[i] == i[0]:
-            count += 1
-    return count
-
-def priority_queue(self):
-    #priority based on heuristic + num steps taken
-    pass
-
-def a_star_search(startState, goalState, successorFunction):
-    #g(n) actual steps taken
-    #h(n) heuristic
-    pass
-
-## End Solver
-#-------------------------
+            print_side_indent(side)
+        else:
+            return side + " is an invalid input!"
 
 testCube = RubiksCube()
 
